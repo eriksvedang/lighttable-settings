@@ -1,0 +1,15 @@
+{:+ {:app [(:lt.objs.style/set-skin "dark")
+           :lt.objs.intro/show-new-file]
+
+     :editor [:lt.objs.editor/no-wrap
+              (:lt.objs.style/set-theme "jernau")
+              (:lt.objs.style/font-settings "Monaco" 13 1.15)
+              :lt.objs.editor/line-numbers]
+
+     :editor.clojure [(:lt.objs.langs.clj/print-length 1000)]
+
+     :editor.html []
+
+     :browser []}
+
+ :- {:app []}}
