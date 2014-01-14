@@ -1,36 +1,27 @@
-{:+ {:app {;"ctrl-shift-right" [:tabs.move-next-tabset]
-           ;"ctrl-shift-left" [:tabs.move-prev-tabset]
-           "cmd-alt-left" [:tabs.prev]
+{:+ {:app {"cmd-alt-left" [:tabs.prev]
            "cmd-alt-right" [:tabs.next]
+
            "cmd-shift-c" [:toggle-console]
            "ctrl-w" [:workspace.show]
            "ctrl-c" [:show-connect]
+           "cmd-shift-p" [:show-commandbar]
+
            "ctrl-l" [:clear-console]
            "ctrl-shift-l" [:clear-inline-results]}
 
      :editor {"alt-w" [:editor.watch.watch-selection]
               "alt-shift-w" [:editor.watch.unwatch]
+
+              "ctrl-e" [(:paredit.select.parent "(") (:eval.custom "(macroexpand-1 '__SELECTION__)" {:result-type :inline})]
+
+              "ctrl-shift-up" [:paredit.shrink.left]
+              "ctrl-shift-down" [:paredit.shrink.right]
+              "ctrl-shift-left" [:paredit.grow.left]
+              "ctrl-shift-right" [:paredit.grow.right]
+              "ctrl-enter" [(:paredit.select.parent "(") :eval-editor-form :paredit.select.clear]
+              "ctrl-s" [:paredit.select.parent]
+
               "cmd-esc" [:eval.cancel-all!]
               "cmd-," [:toggle-comment-selection]
 
-              "ctrl-enter" [(:paredit.select.parent "(") :eval-editor-form :paredit.select.clear]
-              "ctrl-shift-s" [:paredit.select.parent]
-              "ctrl-s" [(:paredit.select.parent "(") :smart-indent-selection :paredit.select.clear]
-
-              "ctrl-shift-down" [:paredit.shrink.left]
-              "ctrl-shift-up" [:paredit.shrink.right]
-              "ctrl-shift-left" [:paredit.grow.left]
-              "ctrl-shift-right" [:paredit.grow.right]
-
-              "ctrl-h" [:editor.doc.toggle]
-
-              "ctrl-shift-n" [(:eval.custom "(def WATCH_LOG (atom {}))")]}
-
-     :editor.clj {"ctrl-e" [(:paredit.select.parent "(") (:eval.custom "(macroexpand-1 '__SELECTION__)" {:result-type :inline})]
-                  "ctrl-n" [(:editor.watch.custom-watch-selection "(let [result (do __SELECTION__)]
-                                                                  (defonce WATCH_LOG (atom {}))
-                                                                  (swap! WATCH_LOG update-in [__ID__] (fnil conj []) result)
-                                                                  __|(str (get @WATCH_LOG __ID__ \"Key not found\"))|__
-                                                                  result)"
-                                                                 {:class "timed" :verbatim true})]}
-     :editor.html {}}}
+              }}}
