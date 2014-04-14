@@ -7,7 +7,14 @@
            "cmd-shift-p" [:show-commandbar]
 
            "ctrl-l" [:clear-console]
-           "ctrl-shift-l" [:clear-inline-results]}
+           "ctrl-shift-l" [:clear-inline-results]
+
+           "ctrl-1" [:tabset.close]
+           "ctrl-2" [:tabset.new :tabs.move-next-tabset]
+
+           "ctrl-n" [:tabset.next]
+
+           }
 
      :editor {"alt-w" [:editor.watch.watch-selection]
               "alt-shift-w" [:editor.watch.unwatch]
@@ -23,5 +30,7 @@
 
               "cmd-esc" [:eval.cancel-all!]
               "cmd-," [:toggle-comment-selection]
+
+              "ctrl-j" [(:eval.custom "*ns*")]
 
               }}}

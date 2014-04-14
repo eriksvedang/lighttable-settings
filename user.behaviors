@@ -1,4 +1,6 @@
-{:+ {:app [(:lt.objs.style/set-skin "dark")]
+{:+ {:app [(:lt.objs.style/set-skin "dark")
+           :lt.objs.sidebar.workspace/workspace.open-on-start
+           :lt.objs.intro/show-new-file]
 
      :editor [:lt.objs.editor/no-wrap
               (:lt.objs.style/set-theme "borealis")
@@ -7,7 +9,9 @@
 
      :console []
 
-     :editor.clojure [(:lt.objs.langs.clj/print-length 1000)]}
+     :editor.clojure [(:lt.objs.langs.clj/print-length 1000)
+                      :lt.plugins.lt-scrubber/activate-scrubber]}
 
- :- {:app []
-     :editor.cljs []}}
+ :- {:app [:lt.objs.intro/show-intro]
+
+     :editor.clojure [:lt.plugins.auto-complete/auto-show-on-input]}}
