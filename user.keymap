@@ -1,26 +1,33 @@
-{:+ {:app {"cmd-alt-left" [:tabs.prev]
-           "cmd-alt-right" [:tabs.next]
-
+{:+ {:app {;; Panels
            "cmd-shift-c" [:toggle-console]
            "ctrl-w" [:workspace.show]
            "ctrl-c" [:show-connect]
            "cmd-shift-p" [:show-commandbar]
 
+           ;; Clear results
            "ctrl-l" [:clear-console]
-           "ctrl-shift-l" [:clear-inline-results]
+           "ctrl-o" [:clear-inline-results]
 
+           ;; Tabs
+           "cmd-alt-left" [:tabs.prev]
+           "cmd-alt-right" [:tabs.next]
            "ctrl-1" [:tabset.close]
            "ctrl-2" [:tabset.new :tabs.move-next-tabset]
+           "ctrl-n" [:tabset.next]}
 
-           "ctrl-n" [:tabset.next]
+     :editor {;; Basics
+              "cmd-esc" [:eval.cancel-all!]
+              "cmd-," [:toggle-comment-selection]
 
-           }
+              ;; Move around
+              "pmeta-left" [:editor.line-start-smart]
+              "pmeta-shift-left" [:editor.line-start-smart]
 
-     :editor {"alt-w" [:editor.watch.watch-selection]
+              ;; Watches
+              "alt-w" [:editor.watch.watch-selection]
               "alt-shift-w" [:editor.watch.unwatch]
 
-              "ctrl-e" [(:paredit.select.parent "(") (:eval.custom "(macroexpand-1 '__SELECTION__)" {:result-type :inline})]
-
+              ;; Paredit
               "ctrl-shift-up" [:paredit.shrink.left]
               "ctrl-shift-down" [:paredit.shrink.right]
               "ctrl-shift-left" [:paredit.grow.left]
@@ -28,9 +35,29 @@
               "ctrl-enter" [(:paredit.select.parent "(") :eval-editor-form :paredit.select.clear]
               "ctrl-s" [:paredit.select.parent]
 
-              "cmd-esc" [:eval.cancel-all!]
-              "cmd-," [:toggle-comment-selection]
-
+              ;; Clojure specific
+              "ctrl-e" [(:paredit.select.parent "(") (:eval.custom "(macroexpand-1 '__SELECTION__)" {:result-type :inline})]
+              "ctrl-shift-e" [(:paredit.select.parent "(") (:eval.custom "(macroexpand '__SELECTION__)" {:result-type :inline})]
               "ctrl-j" [(:eval.custom "*ns*")]
+
+              "pmeta-t" [(:eval.custom
+                       "(clojure.test/run-all-tests
+                       (re-pattern
+                       (str \"^\" *ns* \".*\")))"
+                       {:result-type :statusbar})]
+
+              ;; Sublime text stuff
+              "ctrl-alt-up"     [:editor.sublime.selectLinesUpward]
+              "ctrl-alt-down"   [:editor.sublime.selectLinesDownward]
+              "pmeta-d"           [:editor.sublime.selectNextOccurrence]
+              "ctrl-m"            [:editor.sublime.goToBracket]
+              "ctrl-pmeta-up"     [:editor.sublime.swapLineUp]
+              "ctrl-pmeta-down"   [:editor.sublime.swapLineDown]
+              "shift-pmeta-l"     [:editor.sublime.splitSelectionByLine]
+              "pmeta-j"           [:editor.sublime.joinLines]
+              "shift-pmeta-d"     [:editor.sublime.duplicateLine]
+
+              ;; Typed Clojure
+              "ctrl-shift-n" [:clear-console :typedclojure.check.ns]
 
               }}}

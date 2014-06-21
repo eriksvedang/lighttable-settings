@@ -1,17 +1,17 @@
 {:+ {:app [(:lt.objs.style/set-skin "dark")
-           :lt.objs.sidebar.workspace/workspace.open-on-start
-           :lt.objs.intro/show-new-file]
+           (:lt.objs.files/file.ignore-pattern "(^\\..*)|\\.class$|target/|svn|cvs|\\.git|\\.pyc|~|\\.swp|\\.jar|.DS_Store|\\.nrepl-port|meta")]
 
      :editor [:lt.objs.editor/no-wrap
               (:lt.objs.style/set-theme "borealis")
-              (:lt.objs.style/font-settings "Monaco" 12 1.3)
-              :lt.objs.editor/line-numbers]
+              (:lt.objs.style/font-settings "Monaco" 12 1.35)
+              :lt.objs.editor/line-numbers
+              :lt.plugins.rainbow/rainbow-parens]
 
-     :console []
+     :editor.clojure [(:lt.objs.langs.clj/print-length 1000)]}
 
-     :editor.clojure [(:lt.objs.langs.clj/print-length 1000)
-                      :lt.plugins.lt-scrubber/activate-scrubber]}
+ :- {:app [:lt.objs.intro/show-intro
+           :lt.plugins.lt-scrubber/activate-scrubber
+           :lt.objs.tabs/show-close-button]
 
- :- {:app [:lt.objs.intro/show-intro]
-
-     :editor.clojure [:lt.plugins.auto-complete/auto-show-on-input]}}
+     :editor.clojure [:lt.plugins.auto-complete/auto-show-on-input]
+     :editor.clj.instarepl [:lt.plugins.auto-complete/auto-show-on-input]}}
