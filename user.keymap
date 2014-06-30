@@ -1,8 +1,9 @@
 {:+ {:app {;; Panels
-           "cmd-shift-c" [:toggle-console]
+           "pmeta-shift-c" [:toggle-console]
            "ctrl-w" [:workspace.show]
            "ctrl-c" [:show-connect]
-           "cmd-shift-p" [:show-commandbar]
+           "pmeta-p" [:navigate-workspace-transient]
+           "pmeta-shift-p" [:show-commandbar]
 
            ;; Clear results
            "ctrl-l" [:clear-console]
